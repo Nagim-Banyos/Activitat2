@@ -1,5 +1,6 @@
 import os
 import sys
+import mysql.connector
 
 llista = os.listdir(os.path.join(os.path.dirname(__file__),"UNZIP"))
 contador = 0
@@ -19,12 +20,30 @@ dirActual = os.path.dirname(__file__) + "/UNZIP" + "/" + fitxer1
 print(dirActual)
 pathFitxer = dirActual
 
+cnx = mysql.connector.connect(user='perepi', password='pastanaga',
+                              host='10.93.255.122',
+                              database='activitat2')
+cursor = cnx.cursor()
 
 try :
     with open(pathFitxer, "r") as fitxer:
         for linia in fitxer:
-            if linia[11:13] == "99":
-                print("Autonoma")
-            print(linia[14:64])
+            if linia[11:13] != "99":
+                stm_insert_provincies = ("INSERT INTO provincies"
+                                            "(codi_ine, nom, comunitat_aut_id)"
+                                            "VALUES (%s, %s, %s)")
+                dades_provincies = (linia[11:13], linia[14:64], linia[11:13])
+                cursor.execute(stm_insert_provincies,dades_provincies)
+                cnx.commit()
+            else:
+                stm_insert_provincies = ("INSERT INTO provincies"
+                                            "(codi_ine, nom, comunitat_aut_id)"
+                                            "VALUES (%s, %s, %s)")
+                dades_provincies = (linia[9:11], linia[14:64], linia[11:13])
+                cursor.execute(stm_insert_provincies,dades_provincies)
+                cnx.commit()
+
 except OSError as error:
     print("No s'ha pogut posar " + pathFitxer)
+cursor.close()
+cnx.close()
