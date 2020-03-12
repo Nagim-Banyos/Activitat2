@@ -23,7 +23,7 @@ pathFitxer = dirActual
 try :
     with open(pathFitxer, "r") as fitxer:
         for linia in fitxer:
-            print("------------")
+            #Default
             print("Nom Curt: " + linia[14:64])
             print("Nom Llarg: " + linia[64:214])
 

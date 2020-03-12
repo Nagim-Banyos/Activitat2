@@ -23,7 +23,7 @@ pathFitxer = dirActual
 try :
     with open(pathFitxer, "r") as fitxer:
         for linia in fitxer:
-            print("------------")
+            #Default
             print("Codi Acumulació Provincia: " + linia[214:220])
             print("Codi Acumulació Comunitat Autonoma: " + linia[220:226])
 
