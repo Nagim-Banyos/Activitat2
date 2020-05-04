@@ -2,6 +2,7 @@ import os
 import sys
 
 llista = os.listdir(os.path.join(os.path.dirname(__file__),"UNZIP"))
+print (llista)
 contador = 0
 llistatFitxers={}
 for i in llista:

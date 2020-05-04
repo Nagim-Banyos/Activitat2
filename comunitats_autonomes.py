@@ -20,8 +20,8 @@ dirActual = os.path.dirname(__file__) + "/UNZIP" + "/" + fitxer1
 print(dirActual)
 pathFitxer = dirActual
 
-cnx = mysql.connector.connect(user='perepi', password='pastanaga',
-                              host='10.93.255.122',
+cnx = mysql.connector.connect(user='root', password='patatilla',
+                              host='34.230.175.156',
                               database='activitat2')
 cursor = cnx.cursor()
 
